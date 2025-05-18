@@ -1,0 +1,12 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A modern weather web application that shows real-time weather data based on the user's current location or searched city using the OpenWeatherMap API. Features include temperature, humidity, wind speed, and weather icons with responsive design and geolocation support.",
+  "license": "ISC",
+  "author": "Udith Shankar",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
