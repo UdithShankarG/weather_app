@@ -12,7 +12,6 @@ const windElem = document.getElementById("wind-speed");
 const weatherCard = document.getElementById("weather-info");
 const errorMessage = document.getElementById("error-message");
 
-
 function showLoader() {
   loader.classList.remove("hidden");
   weatherCard.classList.add("hidden");
@@ -104,6 +103,8 @@ cityInput.addEventListener("keypress", (e) => {
 
 // Auto-detect location
 window.addEventListener("load", () => {
+  showLoader(); // 👈 Show loader immediately
+
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -111,23 +112,26 @@ window.addEventListener("load", () => {
         getWeatherByCoords(latitude, longitude);
       },
       (error) => {
+        hideLoader(); // 👈 Hide loader if geolocation fails
+
         let msg = "⚠️ Location access denied. Please search manually.";
         if (error.code === error.PERMISSION_DENIED) {
           msg = "🔒 You denied location access. Please allow it to see weather for your area.";
         } else if (error.code === error.POSITION_UNAVAILABLE) {
           msg = "⚠️ Location info unavailable.";
         } else if (error.code === error.TIMEOUT) {
-          msg = "⏱️ Location request timed out.";
+          msg = "⏱️ Location request timed out. Please try again or search manually.";
         }
         showError(msg);
       },
       {
         enableHighAccuracy: true,
-        timeout: 10000,
+        timeout: 8000, // 👈 Faster timeout (8s)
         maximumAge: 0
       }
     );
   } else {
+    hideLoader();
     showError("❌ Geolocation is not supported by this browser.");
   }
 });
