@@ -1,7 +1,6 @@
 const loader = document.getElementById("loader");
 const searchBtn = document.getElementById("search-btn");
 const cityInput = document.getElementById("city-input");
-
 const cityNameElem = document.getElementById("city-name");
 const tempElem = document.getElementById("temperature");
 const descElem = document.getElementById("description");
